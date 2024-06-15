@@ -4,13 +4,13 @@ export default class Clouds {
   numberOfClouds: number;
   cloudPoints: any[];
   constructor() {
-    this.numberOfClouds = 20;
+    this.numberOfClouds = Math.round(window.innerWidth / 100);
     this.cloudPoints = [];
 
     for (let index = 0; index < this.numberOfClouds; index++) {
       const cloudX = Math.random() * window.innerWidth;
-      const cloudY = Math.random() * 200 + 50;
-      const cloudSpeed = (Math.random() + 0.1) * 2;
+      const cloudY = Math.random() * window.innerHeight * 0.1 + 80;
+      const cloudSpeed = (Math.random() + 0.1) * this.numberOfClouds * 0.2;
 
       this.cloudPoints.push({ x: cloudX, y: cloudY, speed: cloudSpeed });
     }
@@ -39,7 +39,7 @@ export default class Clouds {
 
       cloudPoint.x += cloudPoint.speed;
 
-      if (cloudPoint.x > window.innerWidth + 100) {
+      if (cloudPoint.x > window.innerWidth * 1.1) {
         cloudPoint.x = 0;
       }
     }

@@ -18,6 +18,6 @@ export default class Sun {
   }
   draw() {
     // Draw the sun
-    this.drawSun(700, 100, 50);
+    this.drawSun(window.innerWidth * 0.3, window.innerHeight * 0.1, 50);
   }
 }

@@ -39,3 +39,17 @@ export const getBirthDayTextList = () => {
 
   return newText;
 };
+
+export const getTextScale = () => {
+  const width = window.innerWidth;
+
+  if (width >= 1500) {
+    return 1;
+  }
+
+  if (width >= 1000) {
+    return 0.5;
+  }
+
+  return 0.25;
+};

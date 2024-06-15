@@ -20,7 +20,7 @@ export default class Drawing {
   }: TDrawing) {
     this.isText = isText;
     this.displayTime = displayTime;
-    this.gap = gap;
+    this.gap = gap * this.getTextScale();
 
     if (!isImage) {
       this.keySequence = Drawing.initSequence(isText, keySequence);
@@ -128,6 +128,20 @@ export default class Drawing {
     });
   }
 
+  getTextScale() {
+    const width = window.innerWidth;
+
+    if (width >= 1500) {
+      return 1;
+    }
+
+    if (width >= 1000) {
+      return 0.5;
+    }
+
+    return 0.25;
+  }
+
   addDrawing({
     isFirstWord = false,
     startingPosition,
@@ -167,17 +181,21 @@ export default class Drawing {
       const shouldSkipGap = isFirstWord && index === 0;
 
       if (!shouldSkipGap) {
-        diff = width + this.gap;
+        diff = width * this.getTextScale() + this.gap;
       }
 
       currentX -= diff;
+
+      const scale = this.getTextScale();
+      const baseRadius = 2 * scale;
 
       circleManager.loadDrawing({
         name: key,
         newCenterPoint: new Point(currentX, currentY),
         // colorOverride: () => getRandomColorsFromList(),
-        radiusOverride: () => (Math.random() + 0.5) * 2,
+        radiusOverride: () => (Math.random() + 0.5) * baseRadius,
         objectName: `${drawingName}-${key}-${index} `,
+        scale,
       });
     }
 

@@ -6,7 +6,7 @@ import Point from "./point";
 import { TDrawing } from "./drawing/types";
 // import DrawingManager from "./drawing_manager";
 import EditorManager from "./editor_manager";
-import { getBirthDayTextList } from "./text_helper";
+import { getBirthDayTextList, getTextScale } from "./text_helper";
 import Waves from "./waves";
 import Clouds from "./clouds";
 import Sun from "./sun";
@@ -90,19 +90,19 @@ let result2: {
 const updatePosition = (index: number) => {
   if (index % 6 === 0 && index !== 0) {
     startingPosition.x = getStartingX();
-    startingPosition.y = getStartingY() + 240;
+    startingPosition.y = getStartingY() + 240 * getTextScale();
 
     return;
   }
 
   if (index % 3 === 0 && index !== 0) {
     startingPosition.x = getStartingX();
-    startingPosition.y = getStartingY() + 120;
+    startingPosition.y = getStartingY() + 120 * getTextScale();
 
     return;
   }
 
-  startingPosition.x -= (result2?.totalWidth || 0) * 1.5 + 100;
+  startingPosition.x -= ((result2?.totalWidth || 0) * 1.5 + 100) * getTextScale();
 };
 
 const drawSentence = () => {

@@ -18,8 +18,8 @@ export default class Kayak {
     this.kayakDrawings = [];
 
     for (let index = 0; index < this.numberOfItems; index++) {
-      const kayakY = 400 - Math.random() * 3;
-      const kayakX = Math.random() * window.innerWidth * 0.25 + index * 100;
+      const kayakY = window.innerHeight * 0.25 - Math.random() * 3;
+      const kayakX = Math.random() * window.innerWidth * 0.25 + index *  window.innerWidth * 0.1;
       const kayakDrawing = new Drawing({
         keySequence: `kayak`,
       });

@@ -44,14 +44,6 @@ export default class Point {
       (point.y - center.y) / currentDistanceFromCenter
     );
 
-    console.log({
-      direction,
-      newDistance,
-      currentDistanceFromCenter,
-      scale,
-      center,
-    });
-
     point.x = center.x + direction.x * newDistance;
     point.y = center.y + direction.y * newDistance;
   }
@@ -63,18 +55,15 @@ export default class Point {
   ): Point[] {
     let normalizedPoints: Point[] = [];
 
+    console.log("scale down");
+
     for (let index = 0; index < points.length; index++) {
       const point = points[index];
 
-      console.log("scale down");
       Point.movePointsCloser(point, center, scale);
 
       if (index % scale !== 0) {
         normalizedPoints.push(point);
-      }
-
-      if (index % scale === 0) {
-        console.log(`removing index: ${index}, scale: ${scale}`);
       }
     }
 
@@ -84,10 +73,10 @@ export default class Point {
   static scaleUpShape(points: Point[], scale: number): Point[] {
     let normalizedPoints: Point[] = [];
 
+    console.log("scale up");
+
     for (let index = 0; index < points.length; index++) {
       const point = points[index];
-
-      console.log("scale up");
 
       // move points further
 
